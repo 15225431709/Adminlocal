@@ -2,20 +2,20 @@
 	<div class="sidebar">
 	            <nav class="sidebar-nav">
 	                <ul class="nav">
-	                    <li class="nav-title"><h5>菜单栏</h5></li>
+	                    <li class="nav-title"><h5 class="text-light">菜单栏</h5></li>
 
-				<li class="nav-item nav-dropdown" v-for="item in list" :class="item.open?'open':''"  @click="show(item)"> 
+				<li class="nav-item nav-dropdown"  v-for="item in list" :key="item.title" :class="item.open?'open':''"  @click="show(item)"> 
 						<a href="#" class="nav-link nav-dropdown-toggle"  >
-							<i :class="item.sp"></i> {{item.name}} <i class="fa fa-caret-left"></i>
+							<i :class="item.sp"></i> {{item.title}} <i class="fa fa-caret-left"></i>
 						</a>
 						
 					<ul class="nav-dropdown-items" >
 						
-						<li v-for="v in item.subItems" @click="toLink(v.path,v.name)">
+						<li v-for="v in item.subItems" :key="v.title" @click="toLink(v.path,v.name)">
 							<a href="#" class="nav-link second">
-								{{v.name}}
+								{{v.title}}
 							</a>
-						</li>													
+						</li>											
 					</ul>
 				</li>
 	                </ul>
@@ -28,56 +28,93 @@
 		data() {
 			return {
 				isshow:false,
-				list:[{
-                name:'系统管理',
+				list:[
+					{
+        name:'System',
+				title:'系统管理',
 				sp:'glyphicon glyphicon-cog',
-                open:false,
-                subItems:[
-                    {name:'Home',path:'/Admin/Home'},
-					{name:'网站设置',path:'/Admin/Site'}				   
-                    ]
-                },
+        open:false,
+        subItems:[
+          {name:'Home',path:'/Admin/Home',title:'系统展示'},
+					{name:'Site',path:'/Admin/Site',title:'系统设置'}				   
+          ]
+          },
 				    {
-				name:'管理员设置',
+				name:'AdminUser',
+				title:'管理员管理',
 				sp:'glyphicon glyphicon-asterisk',
 				open:false,
 				subItems:[
-					{name:'管理用户',path:'/Admin/Administer'},
-					{name:'角色管理',path:'/Admin/Role'},
-					{name:'权限管理',path:'/Admin/Auth'},
+					{name:'Administer',path:'/Admin/Administer',title:'管理员管理'},
+					{name:'Role',path:'/Admin/Role',title:'角色管理'},
+					{name:'Auth',path:'/Admin/Auth',title:'权限管理'},
 				    ]		
 					},
+					{
+					name:'Images',
+					title:'图片管理',
+					sp:'glyphicon glyphicon-picture',
+					open:false,
+					subItems:[						
+						{name:'Carousel',path:'/Admin/Carousel',title:'轮播图管理'},						
+					]
+					},
+					
+					{
+					name:'News',
+					title:'资讯管理',
+					sp:'glyphicon glyphicon-fire',
+					open:false,
+					subItems:[						
+						{name:'Category',path:'/Admin/Category',title:'标题管理'},
+						{name:'Article',path:'/Admin/Article',title:'文章管理'},						
+					]
+					},
+					
+					{
+					name:'Users',	
+					title:'用户管理',
+					sp:'glyphicon glyphicon-user',
+					open:false,
+					subItems:[						
+						{name:'User',path:'/Admin/User',title:'用户列表'},											
+					]
+					},
+					
                     {
-                name:'功能菜单',
-				sp:'glyphicon glyphicon-wrench',
+                name:'Function',
+								title:'功能菜单',
+				        sp:'glyphicon glyphicon-wrench',
                 open:false,
                 subItems:[
-                    {name:'Card',path:'/Admin/Card'},
-                    {name:'Alert',path:'/Admin/Alert'},
-                    {name:'Button',path:'/Admin/Button'},
-					{name:'Modals',path:'/Admin/Modal'},
-					{name:'Tabs',path:'/Admin/Tabs'},
-					{name:'Progress',path:'/Admin/Progress'},
-					{name:'Widgets',path:'/Admin/Widgets'},
-					{name:'Tables',path:'/Admin/Table'},
+                    {name:'Card',path:'/Admin/Card',title:'卡片'},
+                    {name:'Alert',path:'/Admin/Alert',title:'警告框'},
+                    {name:'Button',path:'/Admin/Button',title:'按钮组'},
+					          {name:'Modals',path:'/Admin/Modal',title:'模态层'},
+					          {name:'Tabs',path:'/Admin/Tabs',title:'选项卡'},
+					          {name:'Progress',path:'/Admin/Progress',title:'进度条'},
+					          {name:'Widgets',path:'/Admin/Widgets',title:'展示'},
+					          {name:'Tables',path:'/Admin/Table',title:'表格'},
                     ]
                 },
                     {
-                name:'Chart图形',
+                name:'Charts',
+								title:'Chart图形',
 				sp:'glyphicon glyphicon-signal',
                 open:false,
                 subItems:[
-                    {name:'Chart',path:'/Admin/Chart'},                   
+                    {name:'Chart',path:'/Admin/Chart',title:'图形展示'},                   
                     ]
                 },
 				{
-				name:'表单',
+				name:'Forms',
+				title:'表单',
 				sp:'glyphicon glyphicon-list-alt',
 				open:false,
 				subItems:[
-					{name:'Form',path:'/Admin/Form'},                   
+					{name:'Form',path:'/Admin/Form',title:'表单列表'},                   
 					]	
-				}
+				},
 				]
 			};
 		},
@@ -128,12 +165,12 @@ h5{
 	color:#fff
 }
 .sidebar{
-	background: #000;
+	
 }
 .second{
 	margin:0 30px;
 }
 .sidebar .nav-dropdown.open .nav-dropdown-items{
-	background: #333
+	background: #393D49;
 }
 </style>

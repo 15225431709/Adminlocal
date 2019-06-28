@@ -5,13 +5,13 @@
         
 				<app-menu @showMenu="getMenu"></app-menu>
 
-        <div class="content">
-
-			
-			<admin-nav :menu="menu">{{menu}}</admin-nav>		  
-
+        <div class="content" id="content">		
+			  <admin-nav :menu="menu">{{menu}}</admin-nav>		  
             <router-view></router-view>
+			
+			        
         </div>
+				
     </div>
     
 </div>	
@@ -21,20 +21,23 @@
 	import Header from './public/Header';
 	import Menu from './public/Menu'
 	import Nav from './public/Nav'
+	import {getpath} from '../assets/js/before.js'
+	import {addCookie,getCookie,delCookie} from '../assets/js/cookie.js'	
 	export default {
 		name:'Index',
 		data() {
 			return {
 				user:'',
 				menu:'',
+				name:'',
 			};
-		},
+		},		
 		created(){
 			
 		
 		},
 		mounted(){
-			
+			this.dd();
 		},
 		components:{
 			"app-header":Header,
@@ -43,10 +46,15 @@
 		},
 		methods:{
 		
-         getMenu(data){
-			 console.log('1'+data)
-			 this.menu=data.name;
-			 
+     getMenu(data){			 		 
+			 this.menu=data.name;			 
+		 },
+		 
+		 dd:function(){
+			
+			 this.menu=this.$route.name;			 
+			 getpath();
+			
 		 }
 		},
 		
@@ -56,5 +64,11 @@
 </script>
 
 <style>
+.buttons{
+	  margin:0 0 15px 0
+  }
 
+.total{
+	position:absolute;top:40%;z-index:999;width:20%;left:40%;
+}	
 </style>

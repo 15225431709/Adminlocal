@@ -10,7 +10,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+	  '/api': {  //使用"/api"来代替apiconfig 
+    //target: 'http://118.31.225.215', //请求原地址
+		target: 'http://www.adminapi.com', //请求原地址 
+    changeOrigin: true, //允许跨域
+    pathRewrite: { 
+      '^/apis': '' //路径重写 
+      } 
+  } 
+		},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

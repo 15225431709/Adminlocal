@@ -5,7 +5,7 @@
             <div class="col-md-5">
                 <div class="card p-4" >
                     <div class="card-header text-center text-uppercase h4 font-weight-light">
-                        Login
+                        Login {{count}}
                     </div>
 
                     <div class="card-body py-5">
@@ -47,15 +47,13 @@
 </template>
 
 <script>
+	import {addCookie,getCookie,delCookie} from '../assets/js/cookie.js'
 	export default {
-		data() {
-			return {
-				
-			};
-		},
-		mounted() {
-			
-		},
+		computed: {
+         count () {
+         return this.$store.state.count
+           }
+          },				
 		methods:{
 			register:function(){
 				this.$router.push({
@@ -66,18 +64,23 @@
 			login:function(){
 				let username=$('#username').val();
 				let password=$('#password').val();
-				
+				var userinfo='';
 				if(username==''||password==''){
 					alert("用户名和密码不能为空！");
 					return;
 				}else{
-					alert("登陆成功！");
-					this.$router.push({
-						path: '/Admin',
-						query: {
-						username:username
-						}
-					})
+					let form={
+						username:username,
+						password:password
+					};
+                  	this.$store.dispatch('loginform',form).then(res=>{
+						alert('登录成功！');
+						this.$router.push({
+							path:'/'
+						})
+					});
+					
+					
 				}
 				
 				

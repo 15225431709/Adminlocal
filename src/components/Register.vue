@@ -4,10 +4,11 @@
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="card p-4">
+									  <div class="text-left text-primary p-1"><a @click="back" href="#"><i class="glyphicon glyphicon-menu-left"></i> 返回登陆</a></div>
                     <div class="card-header text-center text-uppercase h4 font-weight-light">
-                        Register
+                        Register											
                     </div>
-
+                    
                     <div class="card-body py-5">
                         <div class="form-group">
                             <label class="form-control-label">Name</label>
@@ -31,7 +32,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success btn-block">Create Account</button>
+                        <button type="button" class="btn btn-success btn-block">Create Account</button>
                     </div>
                 </div>
             </div>
@@ -46,7 +47,14 @@
 			return {
 				
 			};
-		}
+		},
+		
+		methods:{
+		back:function(){
+			this.$router.go(-1);
+		}	
+		},
+			
 	}
 </script>
 
